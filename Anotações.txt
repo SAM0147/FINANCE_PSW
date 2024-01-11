@@ -1,0 +1,2 @@
+- Fazer todos os TODO'S
+- Estilizar a emissão de PDF, acredito que seja no arquivo extrato.html que está na pasta partials dentro da pasta templates.
