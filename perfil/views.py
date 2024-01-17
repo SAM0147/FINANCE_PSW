@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .utils import calcula_total, calcula_equilibrio_financeiro
+from .utils import calcula_total, calcula_equilibrio_financeiro, organizar_contas
 from .models import Conta, Categoria
 from extrato.models import Valores
 from datetime import datetime
@@ -24,7 +24,12 @@ def home(request):
 
     percentual_gastos_essenciais, percentual_gastos_nao_essenciais = calcula_equilibrio_financeiro()
 
-    return render(request, 'home.html', {'contas': contas, 'total_contas':total_contas, 'total_entradas': total_entradas, 'total_saidas': total_saidas, 'percentual_gastos_essenciais': int(percentual_gastos_essenciais), 'percentual_gastos_nao_essenciais': int(percentual_gastos_nao_essenciais)})
+    contas_vencidas, contas_proximas_vencimento, restantes = organizar_contas()
+
+    contas_vencidas = calcula_total(contas_vencidas, 'valor')
+    contas_proximas_vencimento = calcula_total(contas_proximas_vencimento, 'valor')
+
+    return render(request, 'home.html', {'contas': contas, 'total_contas':total_contas, 'total_entradas': total_entradas, 'total_saidas': total_saidas, 'percentual_gastos_essenciais': int(percentual_gastos_essenciais), 'percentual_gastos_nao_essenciais': int(percentual_gastos_nao_essenciais), 'contas_vencidas': contas_vencidas, 'contas_proximas_vencimento': contas_proximas_vencimento})
 
 def gerenciar(request):
     contas = Conta.objects.all()

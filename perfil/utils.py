@@ -1,5 +1,6 @@
 from extrato.models import Valores
 from datetime import datetime
+from contas.models import ContaPagar, ContaPaga
 
 def calcula_total(obj, campo):
     total = 0
@@ -22,3 +23,19 @@ def calcula_equilibrio_financeiro():
         return percentual_gastos_essenciais, percentual_gastos_nao_essenciais
     except:
         return 0, 0
+    
+def organizar_contas():
+    MES_ATUAL = datetime.now().month
+    DIA_ATUAL = datetime.now().day
+    
+    contas = ContaPagar.objects.all()
+
+    contas_pagas = ContaPaga.objects.filter(data_pagamento__month=MES_ATUAL).values('conta')
+
+    contas_vencidas = contas.filter(dia_pagamento__lt=DIA_ATUAL).exclude(id__in=contas_pagas)
+    
+    contas_proximas_vencimento = contas.filter(dia_pagamento__lte = DIA_ATUAL + 5).filter(dia_pagamento__gte=DIA_ATUAL).exclude(id__in=contas_pagas)
+    
+    restantes = contas.exclude(id__in=contas_vencidas).exclude(id__in=contas_pagas).exclude(id__in=contas_proximas_vencimento)
+
+    return contas_vencidas, contas_proximas_vencimento, restantes
