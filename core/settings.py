@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'perfil',
     'extrato',
     'planejamento',
+    'contas',
 ]
 
 MIDDLEWARE = [
@@ -140,5 +141,5 @@ MESSAGE_TAGS = {
     constants.ERROR: 'alert-danger',
     constants.WARNING: 'alert-warning',
     constants.SUCCESS: 'alert-sucess',
-    constants.INFO: 'alert-info'
+    constants.INFO: 'alert-info',
 }

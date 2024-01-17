@@ -1,2 +1,9 @@
-- Fazer todos os TODO'S
+- Fazer todos os "TODO'S" pedentes.
+- Terminar as partes que o professor deixou para eu fazer.
 - Estilizar a emissão de PDF, acredito que seja no arquivo extrato.html que está na pasta partials dentro da pasta templates.
+- Verificar o "from django.contrib.messages import constants".✅
+- Separar a entrada e as saida de dinheiro.
+- Colocar opção de entrada automatica todo mês.
+
+- Fazer uma tabela no arquivo "ver_contas.html", de relatorio de contas. Com as seguintes informações: Contas vencidas: qtd, Proximas do vencimento: qtd, restantes: qtd, pagas: qtd.
+- Finalizar o botão de pagamento do arquivo "ver_contas.html".

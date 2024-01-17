@@ -1,0 +1,49 @@
+div#menu a{
+    text-decoration: none;
+    color: black;
+}
+
+div#menu ul{
+    list-style: none;
+    position: absolute;
+    top: 70px;
+    width: 100%;
+}
+
+div#menu img{
+    width: 30px;
+}
+
+div#menu input[type="checkbox"]{
+    display: none;
+}
+
+div#menu nav{
+    background-color: rgba(186, 182, 182, 0.72);
+    width: 250px;
+    height:100%;
+    position: absolute;
+    left: -250px;
+    transition: all .5s;
+}
+
+div#menu a{
+    display: block;
+    padding: 20px 5px;
+    color: white;
+}
+
+div#menu a:hover{
+    background-color: rgb(176,224,230);
+    color: black;
+}
+
+div#menu label{
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+}
+
+div#menu input[type="checkbox"]:checked ~ nav{
+    transform: translateX(250px);
+}

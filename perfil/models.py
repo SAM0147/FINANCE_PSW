@@ -16,7 +16,10 @@ class Categoria(models.Model):
         return valores['valor__sum'] if valores['valor__sum'] else 0
 
     def calcula_percentual_gasto_por_categoria(self):
-        return int((self.total_gasto()/self.valor_planejamento)*100)
+        if(self.total_gasto()>0):
+            return int((self.total_gasto()/self.valor_planejamento)*100)
+        else:
+            return 0
 
 
 class Conta(models.Model):
